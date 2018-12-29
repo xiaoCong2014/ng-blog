@@ -1,21 +1,105 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!-- region 顶部导航 -->
+<div class="navbar navbar-fixed-top main-nav" role="navigation">
+  <div class="container">
+    <p-growl [(value)]="msgs"></p-growl>
+    <div class="navbar-header">
+      <button #button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse" (click)="toggle(button)">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a routerLink="posts" class="navbar-brand navbar-brand-my">
+        NiceFish
+      </a>
+    </div>
+    <div class="collapse navbar-collapse navbar-responsive-collapse" aria-expanded="false">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active" class="dropdown">
+          <a routerLink="posts">{{'app.articles' | translate}}</a>
+        </li>
+        <li class="dropdown">
+          <a routerLink="echart">{{'app.echarts' | translate}}</a>
+        </li>
+        <!-- <li class="dropdown">
+            <a routerLink="map">{{'app.gaodemap' | translate}}</a>
+        </li> -->
+        <!-- <li class="dropdown">
+            <a routerLink="jquery">集成jQuery</a>
+        </li> -->
+        <!-- <li class="dropdown">
+            <a routerLink="jsplumb">{{'app.jsplumb' | translate}}</a>
+        </li>
+        <li class="dropdown">
+            <a routerLink="userlist">{{'app.userlist' | translate}}</a>
+        </li>
+        <li class="dropdown">
+            <a href="http://git.oschina.net/mumu-osc/NiceFish" data-toggle="dropdown" class="dropdown-toggle" target="_blank">NiceFish</a>
+        </li>
+        <li class="dropdown">
+            <a href="http://git.oschina.net/zt_zhong/CodeBe" data-toggle="dropdown" class="dropdown-toggle" target="_blank">CodeBe</a>
+        </li> -->
+      </ul>
+      <ul *ngIf="!currentUser?.userName" class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="login">{{'app.login' | translate}}</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="register">{{'app.register' | translate}}</a>
+        </li>
+      </ul>
+      <ul *ngIf="currentUser?.userName" class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active">
+          <a routerLink="user">{{'app.welcome' | translate}}：{{currentUser?.userName}}</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="manage">{{'app.console' | translate}}</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" (click)="doLogout()">{{'app.logout' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- endregion 顶部导航 -->
 
-<router-outlet></router-outlet>
+<!-- region 顶部导航 -->
+<div class="container main-container">
+  <router-outlet></router-outlet>
+</div>
+<!-- endregion 顶部导航 -->
+
+<!-- region 底部区域 -->
+<div class="footer bs-footer">
+  <div class="container">
+    <div class="row">
+      <p>
+        Powered by <a href="http://git.oschina.net/mumu-osc/NiceFish" target="_blank">NiceFish</a>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- endregion 底部区域 -->
+
+<!--The content below is only a placeholder and can be replaced.-->
+<!--<div style="text-align:center">-->
+  <!--<h1>-->
+    <!--Welcome to {{ title }}!-->
+  <!--</h1>-->
+  <!--<img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+<!--</div>-->
+<!--<h2>Here are some links to help you start: </h2>-->
+<!--<ul>-->
+  <!--<li>-->
+    <!--<h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>-->
+  <!--</li>-->
+<!--</ul>-->
+
+<!--<router-outlet></router-outlet>-->
